@@ -1,5 +1,6 @@
 #include <iostream>
 #include "game.h"
+#include "./player/player.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -11,8 +12,8 @@ Game::Game(int width, int height, std::string title){
 
 void Game::run(){
     sf::RenderWindow window(sf::VideoMode(width, height), title);
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+
+    Player player(window);
 
     while (window.isOpen())
     {
@@ -22,9 +23,11 @@ void Game::run(){
             if (event.type == sf::Event::Closed)
                 window.close();
         }
+        window.clear(sf::Color(10, 10, 10));
 
-        window.clear();
-        window.draw(shape);
+        player.update();
+        player.render();
+
         window.display();
     }
 };
