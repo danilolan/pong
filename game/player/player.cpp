@@ -1,10 +1,14 @@
 #include "player.h"
 #include <iostream>
 
-Player::Player(sf::RenderWindow& window): 
+Player::Player(sf::RenderWindow& window, sf::Keyboard::Key upKey, sf::Keyboard::Key downKey, float posX): 
     window(window)
 {
+    this->downKey = downKey;
+    this->upKey = upKey;
+
     this->size = sf::Vector2f(30.f, 200.f);
+    this->position = sf::Vector2f(posX, 0.f);
 
     sf::RectangleShape shape(size);
     shape.setFillColor(sf::Color(220, 220, 220));
@@ -16,11 +20,11 @@ Player::Player(sf::RenderWindow& window):
 void Player::update(){
     sf::Vector2f beforePosition = position;
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    if (sf::Keyboard::isKeyPressed(this->downKey))
     {
         position.y += speed;
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    if (sf::Keyboard::isKeyPressed(this->upKey))
     {
         position.y -= speed;
     }

@@ -13,7 +13,8 @@ Game::Game(int width, int height, std::string title){
 void Game::run(){
     sf::RenderWindow window(sf::VideoMode(width, height), title);
 
-    Player player(window);
+    Player playerLeft(window, sf::Keyboard::W, sf::Keyboard::S, 0.f);
+    Player playerRight(window, sf::Keyboard::Up, sf::Keyboard::Down, 970.f);
 
     while (window.isOpen())
     {
@@ -25,8 +26,11 @@ void Game::run(){
         }
         window.clear(sf::Color(10, 10, 10));
 
-        player.update();
-        player.render();
+        playerLeft.update();
+        playerLeft.render();
+
+        playerRight.update();
+        playerRight.render();
 
         window.display();
     }
