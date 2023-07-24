@@ -8,14 +8,15 @@ class Player{
         Player(sf::RenderWindow& window, sf::Keyboard::Key upKey, sf::Keyboard::Key downKey, float posX);
         void update();
         void render();
+        sf::Vector2f position;
+        sf::Vector2f size;
+        
     private:
         sf::RenderWindow& window;
+        sf::RectangleShape shape;
         sf::Keyboard::Key upKey;
         sf::Keyboard::Key downKey;
 
-        sf::Vector2f position;
-        sf::RectangleShape shape;
-        sf::Vector2f size;
         float speed;
 
         bool colisions();

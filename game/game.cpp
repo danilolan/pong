@@ -1,6 +1,7 @@
 #include <iostream>
 #include "game.h"
 #include "./player/player.h"
+#include "./ball/ball.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -15,6 +16,7 @@ void Game::run(){
 
     Player playerLeft(window, sf::Keyboard::W, sf::Keyboard::S, 0.f);
     Player playerRight(window, sf::Keyboard::Up, sf::Keyboard::Down, 970.f);
+    Ball ball(window);
 
     while (window.isOpen())
     {
@@ -31,6 +33,9 @@ void Game::run(){
 
         playerRight.update();
         playerRight.render();
+
+        ball.update(playerLeft, playerRight);
+        ball.render();
 
         window.display();
     }
