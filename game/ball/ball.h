@@ -10,10 +10,12 @@ class Ball{
 
         void update(Player& playerLeft, Player& playerRight);
         void render();
+        void reset();
     private:
         sf::RenderWindow& window;
         sf::CircleShape shape;
         float radius;
+        float speedAcc;
         sf::Vector2f position;
 
         sf::Vector2f speed;
