@@ -15,7 +15,7 @@ void Game::run(){
     sf::RenderWindow window(sf::VideoMode(width, height), title);
 
     Player playerLeft(window, sf::Keyboard::W, sf::Keyboard::S, 0.f);
-    Player playerRight(window, sf::Keyboard::Up, sf::Keyboard::Down, 970.f);
+    Player playerRight(window, sf::Keyboard::Up, sf::Keyboard::Down, 970.f, true);
     Ball ball(window);
 
     while (window.isOpen())
@@ -28,10 +28,10 @@ void Game::run(){
         }
         window.clear(sf::Color(10, 10, 10));
 
-        playerLeft.update();
+        playerLeft.update(ball.position);
         playerLeft.render();
 
-        playerRight.update();
+        playerRight.update(ball.position);
         playerRight.render();
 
         ball.update(playerLeft, playerRight);

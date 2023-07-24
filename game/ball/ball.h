@@ -7,6 +7,7 @@
 class Ball{
     public:
         Ball(sf::RenderWindow& window);
+        sf::Vector2f position;
 
         void update(Player& playerLeft, Player& playerRight);
         void render();
@@ -16,11 +17,10 @@ class Ball{
         sf::CircleShape shape;
         float radius;
         float speedAcc;
-        sf::Vector2f position;
 
         sf::Vector2f speed;
 
-        bool colisions(Player& playerLeft, Player& playerRight);
+        void colisions(Player& playerLeft, Player& playerRight);
 };
 
 #endif // !BALL_H

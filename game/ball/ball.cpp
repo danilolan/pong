@@ -33,11 +33,11 @@ void Ball::render(){
     this->window.draw(shape);
 };
 
-bool Ball::colisions(Player& playerLeft, Player& playerRight){
+void Ball::colisions(Player& playerLeft, Player& playerRight){
     if(position.y <= 0) speed.y = std::abs(speed.y);
     if(position.y + radius * 2 >= 1000) speed.y *= -1;
 
-    std::cout << generateRandomFloat(-0.05f, 0.05f) << std::endl;
+
 
     if(rectangleCircleCollision(playerLeft.position, playerLeft.size, position, radius)){
         speed.x = std::abs(speed.x) + speedAcc;
@@ -52,7 +52,7 @@ bool Ball::colisions(Player& playerLeft, Player& playerRight){
     if(position.x > 1300) reset();
     if(position.x < -300) reset();
 
-};
+}
 
 void Ball::reset(){
     speed = sf::Vector2f(0.02f, 0.05f);

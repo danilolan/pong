@@ -1,7 +1,7 @@
 #include "player.h"
 #include <iostream>
 
-Player::Player(sf::RenderWindow& window, sf::Keyboard::Key upKey, sf::Keyboard::Key downKey, float posX): 
+Player::Player(sf::RenderWindow& window, sf::Keyboard::Key upKey, sf::Keyboard::Key downKey, float posX, bool isBot): 
     window(window)
 {
     this->downKey = downKey;
@@ -10,6 +10,8 @@ Player::Player(sf::RenderWindow& window, sf::Keyboard::Key upKey, sf::Keyboard::
     this->size = sf::Vector2f(30.f, 200.f);
     this->position = sf::Vector2f(posX, 0.f);
 
+    this->isBot = isBot;
+
     sf::RectangleShape shape(size);
     shape.setFillColor(sf::Color(220, 220, 220));
     this->shape = shape;
@@ -17,16 +19,21 @@ Player::Player(sf::RenderWindow& window, sf::Keyboard::Key upKey, sf::Keyboard::
     this->speed = 0.1;
 };
 
-void Player::update(){
+void Player::update(sf::Vector2f ballPosition){
     sf::Vector2f beforePosition = position;
 
-    if (sf::Keyboard::isKeyPressed(this->downKey))
-    {
-        position.y += speed;
+    if(isBot){
+        position.y = ballPosition.y - (size.y / 2);
     }
-    if (sf::Keyboard::isKeyPressed(this->upKey))
-    {
-        position.y -= speed;
+    else {
+        if (sf::Keyboard::isKeyPressed(this->downKey))
+        {
+            position.y += speed;
+        }
+        if (sf::Keyboard::isKeyPressed(this->upKey))
+        {
+            position.y -= speed;
+        }
     }
 
     if(this->colisions()){
